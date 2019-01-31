@@ -1,0 +1,28 @@
+.square {
+  width: 250px;
+  height: 250px;
+  background-color: blanchedalmond;
+  margin: 10px;
+  padding: 10px;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 540px) {
+  .square {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+.square_link {
+  text-decoration: none;
+  color: black;
+}
+
+.square_link:hover {
+  color: #555;
+}

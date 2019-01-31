@@ -1,0 +1,18 @@
+.app {
+  text-align: center;
+}
+
+.app_header_link {
+  text-decoration: none;
+  color: black;
+}
+
+.app_header_link:hover {
+  color: #555;
+}
+
+.app_header {
+  font-size: 3rem;
+  margin: 50px 0;
+  text-transform: uppercase;
+}
