@@ -1,16 +1,19 @@
 import React from 'react';
 import styles from './SquaresGrid.module.css';
+import { getSquares } from '../../utils/squaresBuilder';
 import Square from '../Square/Square';
-import squares from './squares';
+import images from '../../utils/images';
 
 const SquaresGrid = () => (
   <div className={styles.squares_grid}>
-    {squares.map(square =>
+    {getSquares(images).map(({ id, image, text }) =>
       <Square
-        image={square.image}
-        link={square.link}
-        key={square.image || square.link && square.link.text}
-      />)}
+        id={id}
+        key={id}
+        image={image}
+        text={text}
+      />
+    )}
   </div>
 );
 

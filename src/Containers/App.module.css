@@ -5,6 +5,7 @@
 .app_header_link {
   text-decoration: none;
   color: black;
+  transition: all .3s ease-in-out;
 }
 
 .app_header_link:hover {
@@ -15,4 +16,5 @@
   font-size: 3rem;
   margin: 50px 0;
   text-transform: uppercase;
+  display: inline-block;
 }

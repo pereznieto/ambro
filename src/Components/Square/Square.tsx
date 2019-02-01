@@ -1,21 +1,21 @@
 import React from 'react';
 import styles from './Square.module.css';
+import { Link } from 'react-router-dom';
 
 interface SquareProps {
+  id: string;
   image?: string;
-  link?: {
-    text: string;
-    url: string;
-  }
+  text?: string;
 }
 
-const Square = ({ image, link }: SquareProps) => (
-  <div
+const Square = ({ id, image, text }: SquareProps) => (
+  <Link
+    to={`/${id}`}
     className={styles.square}
-    style={{ backgroundImage: image ? `url(${image})` : '' }}
+    {...image && { style: { backgroundImage: `url(${image})` } }}
   >
-    {link && <a href={link.url} className={styles.square_link}>{link.text}</a>}
-  </div>
+    {text}
+  </Link>
 );
 
 export default Square;
