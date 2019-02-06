@@ -27,7 +27,7 @@ const rawPosts = [
     location: 'Monte-Carlo, Monaco',
     caption: 'Just the picture everyone takes 🇮🇩💁‍♀️',
     date: '2018-11-24T17:49:59.000Z',
-    text: '',
+    text: '# On luxury\n\nI cherish and respect luxury. It follows me wherever I go – or perhaps I go wherever luxury will follow. I also _really_ like **Sézanito** and [BA&SH](https://ba-sh.com/).',
   },
   {
     id: 'BqdBxx5FRWJ',

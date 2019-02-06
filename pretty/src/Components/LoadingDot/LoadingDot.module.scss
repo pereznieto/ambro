@@ -1,0 +1,51 @@
+.dotDaddy {
+  height: 100px;
+  margin-top: 50px;
+}
+
+.dot,
+.littleDot {
+  border-radius: 50%;
+  animation-duration: 1.2s;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.dot {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  background-color: blanchedalmond;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation-name: growshrink;
+}
+
+.littleDot {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  animation-name: growshrink2;
+}
+
+@keyframes growshrink {
+  from {
+    transform: scale(1);
+  }
+  
+  to {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes growshrink2 {
+  from {
+    transform: scale(2.5);
+  }
+  
+  to {
+    transform: scale(0);
+  }
+}

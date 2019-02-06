@@ -1,9 +1,10 @@
 import React from 'react';
-import styles from './SquaresGrid.module.css';
+import styles from './SquaresGrid.module.scss';
 import Square from '../Square/Square';
 import { Query } from "react-apollo";
 import { GET_ALL_POSTS } from '../../utils/queries';
 import { generateSquares } from '../../utils/squaresBuilder';
+import LoadingDot from '../LoadingDot/LoadingDot';
 
 export interface SquarePost {
   id: string;
@@ -14,7 +15,7 @@ export interface SquarePost {
 const SquaresGrid = () => (
   <Query query={GET_ALL_POSTS} >
     {({ loading, error, data }) => {
-      if (loading) return null;
+      if (loading) return <LoadingDot />;
       if (error) return <p>Error loading posts</p>;
 
       const { posts }: { posts: SquarePost[] } = data;

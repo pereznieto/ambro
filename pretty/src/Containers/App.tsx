@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './App.module.css';
+import styles from './App.module.scss';
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import SquaresGrid from '../Components/SquaresGrid/SquaresGrid';
 import About from '../Components/About/About';
