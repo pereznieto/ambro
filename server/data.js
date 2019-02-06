@@ -789,26 +789,6 @@ const rawPosts = [
     tags: ['#graduation', '#Bath'],
     text: ''
   },
-  {
-    caption: 'Sunny places ',
-    date: '2017-06-24T12:39:18.000Z',
-    id: 'BVuP37gA_8s',
-    image: '3dbbb98506920a7b2830237d94ec8e33/5CDDE017§19428722_126519387933385_8481120135266959360',
-    location: 'Lisbon, Portugal',
-    ratio: '100',
-    tags: ['#lisbon', '#portugal', '#sunny', '#evening', '#summer', '#travel'],
-    text: ''
-  },
-  {
-    caption: 'Counting the days ',
-    date: '2017-05-03T14:21:08.000Z',
-    id: 'BToiMUFhKXB',
-    image: 'cd15b066d2767dbbed93b4264c0cf011/5CF4934B§18252517_849736641844272_3638751221507948544',
-    location: 'University of Bath',
-    ratio: '100',
-    tags: ['#countdown', '#1month', '#university', '#springtime'],
-    text: ''
-  },
 ];
 
 const buildUrl = image => {
