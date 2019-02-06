@@ -18,7 +18,6 @@ export const GET_ALL_POSTS = gql`
     posts {
       id
       image
-      text
     }
   }
 `;

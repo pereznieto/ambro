@@ -12,7 +12,6 @@
   text-decoration: none;
   color: black;
   transition: all .3s ease-in-out;
-  opacity: 0;
   animation-name: fadein;
   animation-duration: 1s;
   animation-timing-function: ease-in-out;
@@ -27,19 +26,15 @@
 }
 
 .square:hover {
-  color: #555;
-  background-color: rgba(255, 235, 205, .7);
-  opacity: .75;
+  filter: opacity(.75);
 }
 
 @keyframes fadein {
   from {
     opacity: 0;
-    filter: grayscale(1);
   }
   
   to {
     opacity: 1;
-    filter: grayscale(0);
   }
 }
