@@ -8,7 +8,11 @@ const schema = buildSchema(`
   type Post {
     id: String!
     image: String!
+    ratio: String!
+    location: String!
     caption: String!
+    tags: [String!]!
+    date: String!
     text: String!
   }
   type Query {
@@ -27,7 +31,7 @@ app.use(cors());
 app.use(
   "/graphql",
   graphqlHTTP({
-    schema: schema,
+    schema,
     rootValue: root,
     graphiql: true
   })

@@ -2,33 +2,31 @@ import React from 'react';
 import styles from './SquaresGrid.module.css';
 import Square from '../Square/Square';
 import { Query } from "react-apollo";
-import gql from "graphql-tag";;
+import { GET_ALL_POSTS } from '../../utils/queries';
+import { generateSquares } from '../../utils/squaresBuilder';
+
+export interface SquarePost {
+  id: string;
+  image?: string;
+  text?: string;
+}
 
 const SquaresGrid = () => (
-  <Query
-    query={gql`
-      {
-        posts {
-          id
-          image
-          text
-        }
-      }
-    `}
-  >
+  <Query query={GET_ALL_POSTS} >
     {({ loading, error, data }) => {
-      if (loading) return <p>Loading post...</p>;
-      if (error) return <p>Error loading post</p>;
+      if (loading) return null;
+      if (error) return <p>Error loading posts</p>;
 
-      const { posts } = data;
+      const { posts }: { posts: SquarePost[] } = data;
+      const squares = generateSquares(posts);
       return (
         <div className={styles.squares_grid}>
-          {posts.map((post: any) =>
+          {squares.map(({ id, image, text }) =>
             <Square
-              id={`post/${post.id}`}
-              key={post.id}
-              image={post.image}
-              text={post.text}
+              id={id}
+              key={id}
+              image={image}
+              text={text}
             />
           )}
         </div>
