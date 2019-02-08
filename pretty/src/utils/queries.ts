@@ -1,5 +1,15 @@
 import gql from "graphql-tag";
 
+export const GET_ALL_POSTS = gql`
+  {
+    posts {
+      id
+      image
+      date
+    }
+  }
+`;
+
 export const GET_POST = gql`
   query Post($id: String!) {
     post(id: $id) {
@@ -9,15 +19,6 @@ export const GET_POST = gql`
       caption
       date
       text
-    }
-  }
-`;
-
-export const GET_ALL_POSTS = gql`
-  {
-    posts {
-      id
-      image
     }
   }
 `;

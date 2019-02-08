@@ -8,8 +8,8 @@ import LoadingDot from '../LoadingDot/LoadingDot';
 
 export interface SquarePost {
   id: string;
-  image?: string;
-  text?: string;
+  image: string;
+  date: string;
 }
 
 const SquaresGrid = () => (

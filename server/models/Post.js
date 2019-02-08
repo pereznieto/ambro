@@ -24,6 +24,7 @@ const PostSchema = new Schema({
   },
   date: {
     type: String,
+    required: true,
   },
   text: {
     type: String,

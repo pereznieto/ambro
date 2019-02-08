@@ -5,7 +5,7 @@ export default `
     ratio: String!
     caption: String!
     location: String
-    date: String
+    date: String!
     text: String
     tags: [String]
   }
@@ -14,7 +14,7 @@ export default `
     posts: [Post]
   }
   type Mutation {
-    addPost(id: String!, image: String!, ratio: String!, caption: String!, location: String, date: String, text: String, tags: [String]): Post
+    addPost(id: String!, image: String!, ratio: String!, caption: String!, location: String, date: String!, text: String, tags: [String]): Post
     editPost(id: String!, image: String, ratio: String, caption: String, location: String, date: String, text: String, tags: [String]): Post
     deletePost(id: String!, image: String, ratio: String, caption: String, location: String, date: String, text: String, tags: [String]): Post
   }
