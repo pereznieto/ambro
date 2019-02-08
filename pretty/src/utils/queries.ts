@@ -22,3 +22,16 @@ export const GET_POST = gql`
     }
   }
 `;
+
+export const EDIT_POST = gql`
+  mutation EditPost($id: String!, $image: String, $ratio: String, $caption: String, $location: String, $date: String!, $text: String, $tags: [String]) {
+    editPost(id: $id, image: $image, ratio: $ratio, caption: $caption, location: $location, date: $date, text: $text, tags: $tags) {
+      image
+      ratio
+      location
+      caption
+      date
+      text
+    }
+  }
+`;

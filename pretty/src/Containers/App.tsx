@@ -5,8 +5,8 @@ import SquaresGrid from '../Components/SquaresGrid/SquaresGrid';
 import About from '../Components/About/About';
 import Contact from '../Components/Contact/Contact';
 import Inspiration from '../Components/Inspiration/Inspiration';
-import Post from '../Components/Post/Post';
 import ScrollToTop from '../Components/ScrollToTop/ScrollToTop';
+import PostWrapper from '../Components/PostWrapper/PostWrapper';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from "react-apollo";
 
@@ -26,7 +26,8 @@ const App = () => (
           </header>
           <Switch>
             <Route exact path="/" component={SquaresGrid} />
-            <Route path="/post/:id" component={Post} />
+            <Route path="/post/:id" component={PostWrapper} />
+            <Route path="/edit/:id" component={PostWrapper} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
             <Route path="/inspiration" component={Inspiration} />

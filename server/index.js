@@ -3,7 +3,7 @@ import expressGraphQL from "express-graphql";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
-import schema from "./graphql/";
+import schema from "./src/graphql/";
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
