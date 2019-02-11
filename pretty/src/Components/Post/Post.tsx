@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Post.module.scss';
 import moment from 'moment';
 import Markdown from '../Markdown/Markdown';
-import { Link } from 'react-router-dom';
 
 interface PostProps {
   id: string;
@@ -17,7 +16,6 @@ interface PostProps {
 const Post = ({ id, image, ratio, location, caption, date, text }: PostProps) => (
   <div className={styles.post}>
     <h2 className={styles.caption}>{caption}</h2>
-    <Link to={`/edit/${id}`}>Edit post</Link>
     <div
       className={styles.image}
       style={{
