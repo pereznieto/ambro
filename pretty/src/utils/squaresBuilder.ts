@@ -18,7 +18,8 @@ export const generateSquares = (posts: SquarePost[]) => {
         {
           id: linkSquares[(index / 3 - 1)].toLowerCase(),
           text: linkSquares[(index / 3 - 1)],
-        }
+        },
+        current,
       ];
     } else {
       return [...previous, current];

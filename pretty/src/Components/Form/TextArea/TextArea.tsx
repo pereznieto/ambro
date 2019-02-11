@@ -22,7 +22,10 @@ const TextArea = ({ label, name, value, onChange, isDisabled }: TextAreaProps) =
         disabled={isDisabled}
       />
     </label>
-    <Markdown className={styles.preview} text={value || ''} />
+    <div className={styles.preview}>
+      <span className={styles.label}>Text preview</span>
+      <Markdown className={styles.markdown} text={value || ''} />
+    </div>
   </div>
 );
 

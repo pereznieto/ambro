@@ -5,16 +5,47 @@
   text-align: left;
 }
 
-.idLabel {
-  margin-bottom: 10px;
-  font-weight: 600;
-  font-size: 18px;
-}
-
-.idValue {
-  font-size: 18px;
+.id {
+  margin-bottom: 40px;
+  
+  .label {
+    font-weight: 600;
+    font-size: 18px;
+  }
+  
+  .value {
+    font-size: 18px;
+  }
 }
 
 .form {
   width: 100%;
+}
+
+.halves {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  label {
+    width: calc(50% - 20px);
+
+    @media screen and (max-width: 700px) {
+      width: 100%;
+    }
+  }
+}
+
+.button {
+  padding: 20px;
+  font-size: 20px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+
+  &:hover {
+    background-color: blanchedalmond;
+    border-color: blanchedalmond;
+  }
 }
