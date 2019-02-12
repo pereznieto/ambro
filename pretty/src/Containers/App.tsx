@@ -9,6 +9,7 @@ import ScrollToTop from '../Components/ScrollToTop/ScrollToTop';
 import PostWrapper from '../Components/PostWrapper/PostWrapper';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from "react-apollo";
+import PostForm from '../Components/PostForm/PostForm';
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql"
@@ -28,6 +29,7 @@ const App = () => (
             <Route exact path="/" component={SquaresGrid} />
             <Route path="/post/:id" component={PostWrapper} />
             <Route path="/edit/:id" component={PostWrapper} />
+            <Route path="/add" component={PostForm} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
             <Route path="/inspiration" component={Inspiration} />

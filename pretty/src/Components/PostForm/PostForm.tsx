@@ -1,53 +1,91 @@
 import React from 'react';
 import styles from './PostForm.module.scss';
-import gql from "graphql-tag";
 import TextField from '../Form/TextField/TextField';
 import TextArea from '../Form/TextArea/TextArea';
 import { Mutation } from 'react-apollo';
-import { EDIT_POST } from '../../utils/queries';
+import { EDIT_POST, ADD_POST } from '../../utils/queries';
 import LoadingDot from '../LoadingDot/LoadingDot';
+import _ from 'lodash';
+
+export enum FormType {
+  ADD = "ADD",
+  EDIT = "EDIT",
+}
 
 interface PostFormProps {
+  id?: string;
+  image?: string;
+  ratio?: string;
+  location?: string;
+  caption?: string;
+  date?: string;
+  text?: string;
+  type: FormType;
+};
+
+interface PostFormState {
   id: string;
   image: string;
   ratio: string;
   location: string;
   caption: string;
   date: string;
-  text?: string;
-};
-
-interface PostFormState extends PostFormProps {
+  text: string;
   isFormDisabled: boolean;
 };
 
 class PostForm extends React.Component<PostFormProps, PostFormState> {
   constructor(props: PostFormProps) {
     super(props);
-    const { id, image, ratio, location, caption, date, text } = this.props;
-    this.state = { id, image, ratio, location, caption, date, text, isFormDisabled: false };
+    const { id, image, ratio, location, caption, date, text, type } = this.props;
+    this.state = {
+      id: id || '',
+      image: image || '',
+      ratio: ratio || '',
+      location: type === FormType.EDIT ? location || '' : '',
+      caption: caption || '',
+      date: date || '',
+      text: text || '',
+      isFormDisabled: false
+    };
   }
 
   render() {
     const { id, image, ratio, location, caption, date, text, isFormDisabled } = this.state;
+    const isEdit = this.props.type === FormType.EDIT;
+    const label = isEdit ? 'edit' : 'add';
+
     return (
-      <Mutation mutation={EDIT_POST}>
-        {(editPost, { data, loading, called, error }) => {
+      <Mutation mutation={isEdit ? EDIT_POST : ADD_POST}>
+        {(mutatePost, { data, loading, called, error }) => {
           if (loading) return <LoadingDot />;
-          if (error) return <h2>Error updating post</h2>;
-          if (called && !!data) return <h2>Post udpated successfully!</h2>;
+          if (error) return (
+            <React.Fragment>
+              <h2>Error {label}ing post:</h2>
+              <p>{error.message}</p>
+            </React.Fragment>
+          );
+          if (called && !!data) return <h2>Post {label}ed successfully!</h2>;
 
           return (
             <div className={styles.postForm}>
-              <p className={styles.id}>
+              <h2>{isEdit ? 'Edit' : 'Add new'} post</h2>
+              {isEdit && <p className={styles.id}>
                 <span className={styles.label}>ID: </span>
                 <span className={styles.value}>{id}</span>
-              </p>
+              </p>}
               <form className={styles.form} onSubmit={event => {
                 event.preventDefault();
                 this.setState({ isFormDisabled: true });
-                editPost({ variables: { id, image, ratio, location, caption, date, text } });
+                mutatePost({ variables: { id, image, ratio, location, caption, date, text } });
               }}>
+                {!isEdit && <TextField
+                  label="ID"
+                  name="id"
+                  value={id}
+                  onChange={event => { this.setState({ id: event.target.value }) }}
+                  isDisabled={isFormDisabled}
+                />}
                 <TextField
                   label="Caption"
                   name="caption"
@@ -94,7 +132,9 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
                   onChange={event => { this.setState({ text: event.target.value }) }}
                   isDisabled={isFormDisabled}
                 />
-                <button className={styles.button} type="submit" disabled={isFormDisabled}>Update post</button>
+                <button className={styles.button} type="submit" disabled={isFormDisabled}>
+                  {_.capitalize(label)} post
+                </button>
               </form>
             </div >
           );

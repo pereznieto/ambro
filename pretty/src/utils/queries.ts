@@ -23,6 +23,35 @@ export const GET_POST = gql`
   }
 `;
 
+export const ADD_POST = gql`
+mutation AddPost(
+  $id: String!,
+  $image: String!,
+  $ratio: String!,
+  $caption: String!,
+  $location: String,
+  $date: String!,
+  $text: String) {
+  addPost(
+    id: $id,
+    image: $image,
+    ratio: $ratio,
+    caption: $caption,
+    location: $location,
+    date: $date,
+    text: $text
+  ) {
+    id
+    image
+    ratio
+    caption
+    location
+    date
+    text
+  }
+}
+`;
+
 export const EDIT_POST = gql`
 mutation EditPost(
   $id: String!,
