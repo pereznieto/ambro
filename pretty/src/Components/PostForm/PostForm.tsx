@@ -6,6 +6,7 @@ import { Mutation } from 'react-apollo';
 import { EDIT_POST, ADD_POST } from '../../utils/queries';
 import LoadingDot from '../LoadingDot/LoadingDot';
 import _ from 'lodash';
+import Post from '../Post/Post';
 
 export enum FormType {
   ADD = "ADD",
@@ -65,73 +66,78 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
               <p>{error.message}</p>
             </React.Fragment>
           );
-          if (called && !!data) return <h2>Post {label}ed successfully!</h2>;
+          if (called && !!data) return <h2>Post with id: {id} {label}ed successfully!</h2>;
 
           return (
             <div className={styles.postForm}>
-              <h2>{isEdit ? 'Edit' : 'Add new'} post</h2>
-              {isEdit && <p className={styles.id}>
-                <span className={styles.label}>ID: </span>
-                <span className={styles.value}>{id}</span>
-              </p>}
               <form className={styles.form} onSubmit={event => {
                 event.preventDefault();
                 this.setState({ isFormDisabled: true });
                 mutatePost({ variables: { id, image, ratio, location, caption, date, text } });
               }}>
-                {!isEdit && <TextField
-                  label="ID"
-                  name="id"
-                  value={id}
-                  onChange={event => { this.setState({ id: event.target.value }) }}
-                  isDisabled={isFormDisabled}
-                />}
-                <TextField
-                  label="Caption"
-                  name="caption"
-                  value={caption}
-                  onChange={event => { this.setState({ caption: event.target.value }) }}
-                  isDisabled={isFormDisabled}
-                />
-                <div className={styles.halves}>
-                  <TextField
-                    label="Location"
-                    name="location"
-                    value={location}
-                    onChange={event => { this.setState({ location: event.target.value }) }}
-                    isDisabled={isFormDisabled}
-                  />
-                  <TextField
-                    label="Date"
-                    name="date"
-                    value={date}
-                    onChange={event => { this.setState({ date: event.target.value }) }}
-                    isDisabled={isFormDisabled}
-                  />
+                <div className={styles.sections}>
+                  <div className={styles.inputs}>
+                    <h2 className={styles.formTitle}>{isEdit ? 'Edit' : 'Add new'} post</h2>
+                    {isEdit && <p className={styles.id}>
+                      <span className={styles.label}>ID: </span>
+                      <span className={styles.value}>{id}</span>
+                    </p>}
+                    {!isEdit && <TextField
+                      label="ID"
+                      name="id"
+                      value={id}
+                      onChange={event => { this.setState({ id: event.target.value }) }}
+                      isDisabled={isFormDisabled}
+                    />}
+                    <TextField
+                      label="Caption"
+                      name="caption"
+                      value={caption}
+                      onChange={event => { this.setState({ caption: event.target.value }) }}
+                      isDisabled={isFormDisabled}
+                    />
+                    <TextField
+                      label="Location"
+                      name="location"
+                      value={location}
+                      onChange={event => { this.setState({ location: event.target.value }) }}
+                      isDisabled={isFormDisabled}
+                    />
+                    <TextField
+                      label="Date"
+                      name="date"
+                      value={date}
+                      onChange={event => { this.setState({ date: event.target.value }) }}
+                      isDisabled={isFormDisabled}
+                    />
+                    <TextField
+                      label="Image URL"
+                      name="image"
+                      value={image}
+                      onChange={event => { this.setState({ image: event.target.value }) }}
+                      isDisabled={isFormDisabled}
+                    />
+                    <TextField
+                      label="Image ratio"
+                      caption="(height &#215; 100 / width)"
+                      name="ratio"
+                      value={ratio}
+                      onChange={event => { this.setState({ ratio: event.target.value }) }}
+                      isDisabled={isFormDisabled}
+                    />
+                    <TextArea
+                      label="Text"
+                      name="text"
+                      value={text}
+                      onChange={event => { this.setState({ text: event.target.value }) }}
+                      isDisabled={isFormDisabled}
+                    />
+                  </div>
+                  <div className={styles.preview}>
+                    <h2 className={styles.previewTitle}>Post preview</h2>
+                    <Post isSmall={true} {...this.state} />
+                  </div>
                 </div>
-                <div className={styles.halves}>
-                  <TextField
-                    label="Image URL"
-                    name="image"
-                    value={image}
-                    onChange={event => { this.setState({ image: event.target.value }) }}
-                    isDisabled={isFormDisabled}
-                  />
-                  <TextField
-                    label="Image ratio"
-                    name="ratio"
-                    value={ratio}
-                    onChange={event => { this.setState({ ratio: event.target.value }) }}
-                    isDisabled={isFormDisabled}
-                  />
-                </div>
-                <TextArea
-                  label="Text"
-                  name="text"
-                  value={text}
-                  onChange={event => { this.setState({ text: event.target.value }) }}
-                  isDisabled={isFormDisabled}
-                />
                 <button className={styles.button} type="submit" disabled={isFormDisabled}>
                   {_.capitalize(label)} post
                 </button>

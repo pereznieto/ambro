@@ -22,22 +22,33 @@
   width: 100%;
 }
 
-.halves {
+.sections {
+  width: 100%;
+  margin-bottom: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
 
-  label {
-    width: calc(50% - 20px);
+.inputs,
+.preview {
+  width: calc(50% - 20px);
 
-    @media screen and (max-width: 700px) {
-      width: 100%;
-    }
+  @media screen and (max-width: 800px) {
+    width: 100%;
   }
 }
 
+.formTitle,
+.previewTitle {
+  margin: 20px 0;
+  font-size: 30px;
+}
+
 .button {
-  padding: 20px;
+  display: block;
+  margin: 0 auto;
+  padding: 20px 40px;
   font-size: 20px;
   border: 1px solid #aaa;
   border-radius: 5px;

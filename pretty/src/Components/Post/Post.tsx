@@ -11,10 +11,11 @@ interface PostProps {
   caption: string;
   date: string;
   text?: string;
+  isSmall?: boolean;
 };
 
-const Post = ({ id, image, ratio, location, caption, date, text }: PostProps) => (
-  <div className={styles.post}>
+const Post = ({ image, ratio, location, caption, date, text, isSmall }: PostProps) => (
+  <div className={`${styles.post} ${isSmall ? styles.smallPost : ''}`}>
     <h2 className={styles.caption}>{caption}</h2>
     <div
       className={styles.image}
