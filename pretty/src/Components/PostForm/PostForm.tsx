@@ -1,12 +1,12 @@
-import React from 'react';
-import styles from './PostForm.module.scss';
-import TextField from '../Form/TextField/TextField';
-import TextArea from '../Form/TextArea/TextArea';
-import { Mutation } from 'react-apollo';
-import { EDIT_POST, ADD_POST } from '../../utils/queries';
-import LoadingDot from '../LoadingDot/LoadingDot';
 import _ from 'lodash';
+import React from 'react';
+import { Mutation } from 'react-apollo';
+import { ADD_POST, EDIT_POST } from '../../utils/queries';
+import TextArea from '../Form/TextArea/TextArea';
+import TextField from '../Form/TextField/TextField';
+import LoadingDot from '../LoadingDot/LoadingDot';
 import Post from '../Post/Post';
+import styles from './PostForm.module.scss';
 
 export enum FormType {
   ADD = "ADD",

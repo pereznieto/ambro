@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from './SquaresGrid.module.scss';
-import Square from '../Square/Square';
 import { Query } from "react-apollo";
 import { GET_ALL_POSTS } from '../../utils/queries';
 import { generateSquares } from '../../utils/squaresBuilder';
 import LoadingDot from '../LoadingDot/LoadingDot';
+import Square from '../Square/Square';
+import styles from './SquaresGrid.module.scss';
 
 export interface SquarePost {
   id: string;

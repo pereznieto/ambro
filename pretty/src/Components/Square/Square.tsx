@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './Square.module.scss';
 import { Link } from 'react-router-dom';
+import styles from './Square.module.scss';
 
 interface SquareProps {
   id: string;

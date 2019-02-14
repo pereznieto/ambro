@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './Post.module.scss';
 import moment from 'moment';
+import React from 'react';
 import Markdown from '../Markdown/Markdown';
+import styles from './Post.module.scss';
 
 interface PostProps {
   id: string;

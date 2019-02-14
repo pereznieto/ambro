@@ -1,5 +1,5 @@
-import { SquarePost } from "../Components/SquaresGrid/SquaresGrid";
 import _ from 'lodash';
+import { SquarePost } from "../Components/SquaresGrid/SquaresGrid";
 
 interface GeneratedSquares {
   id: string;

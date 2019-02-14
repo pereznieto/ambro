@@ -1,19 +1,19 @@
-import React from 'react';
-import styles from './App.module.scss';
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import SquaresGrid from '../Components/SquaresGrid/SquaresGrid';
-import About from '../Components/About/About';
-import Contact from '../Components/Contact/Contact';
-import Inspiration from '../Components/Inspiration/Inspiration';
-import ScrollToTop from '../Components/ScrollToTop/ScrollToTop';
-import PostWrapper from '../Components/PostWrapper/PostWrapper';
 import ApolloClient from 'apollo-boost';
+import React from 'react';
 import { ApolloProvider } from "react-apollo";
-import PostForm from '../Components/PostForm/PostForm';
-import DeletePost from '../Components/DeletePost/DeletePost';
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import About from '../Components/About/About';
 import Callback from '../Components/Callback/Callback';
-import auth from '../utils/auth';
+import Contact from '../Components/Contact/Contact';
+import DeletePost from '../Components/DeletePost/DeletePost';
 import GuardedRoute from '../Components/GuardedRoute/GuardedRoute';
+import Inspiration from '../Components/Inspiration/Inspiration';
+import PostForm from '../Components/PostForm/PostForm';
+import PostWrapper from '../Components/PostWrapper/PostWrapper';
+import ScrollToTop from '../Components/ScrollToTop/ScrollToTop';
+import SquaresGrid from '../Components/SquaresGrid/SquaresGrid';
+import auth from '../utils/auth';
+import styles from './App.module.scss';
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",

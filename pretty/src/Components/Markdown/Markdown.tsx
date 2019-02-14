@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './Markdown.module.scss';
 import ReactMarkdown from 'react-markdown';
+import styles from './Markdown.module.scss';
 
 interface MarkdownProps {
   text: string;

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './TextArea.module.scss';
-import Markdown from '../../Markdown/Markdown';
 
 interface TextAreaProps {
   label: string;

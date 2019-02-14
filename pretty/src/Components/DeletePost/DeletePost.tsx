@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from './DeletePost.module.scss';
 import { Mutation } from 'react-apollo';
-import LoadingDot from '../LoadingDot/LoadingDot';
 import { RouteComponentProps } from 'react-router';
 import { DELETE_POST } from '../../utils/queries';
+import LoadingDot from '../LoadingDot/LoadingDot';
 import PostWrapper from '../PostWrapper/PostWrapper';
+import styles from './DeletePost.module.scss';
 
 interface DeletePostProps extends RouteComponentProps<{ id: string }> { };
 

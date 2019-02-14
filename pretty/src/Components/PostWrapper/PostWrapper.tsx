@@ -1,6 +1,6 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router';
 import { Query } from "react-apollo";
+import { RouteComponentProps } from 'react-router';
 import { GET_POST } from '../../utils/queries';
 import LoadingDot from '../LoadingDot/LoadingDot';
 import Post from '../Post/Post';
