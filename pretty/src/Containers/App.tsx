@@ -11,35 +11,68 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from "react-apollo";
 import PostForm from '../Components/PostForm/PostForm';
 import DeletePost from '../Components/DeletePost/DeletePost';
+import Callback from '../Components/Callback/Callback';
+import auth from '../utils/auth';
+import GuardedRoute from '../Components/GuardedRoute/GuardedRoute';
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql"
-})
+  uri: "http://localhost:4000/graphql",
+  request: async operation => {
+    await operation.setContext((context: any) => ({
+      headers: {
+        ...context.headers,
+        authorization: auth.getIdToken(),
+      },
+    }));
+  },
+});
 
-const App = () => (
-  <div className={styles.app}>
-    <ApolloProvider client={client}>
-      <Router>
-        <ScrollToTop>
-          <header>
-            <Link to="/" className={styles.app_header_link}>
-              <h1 className={styles.app_header}>Ambro</h1>
-            </Link>
-          </header>
-          <Switch>
-            <Route exact path="/" component={SquaresGrid} />
-            <Route path="/post/:id" component={PostWrapper} />
-            <Route path="/edit/:id" component={PostWrapper} />
-            <Route path="/delete/:id" component={DeletePost} />
-            <Route path="/add" component={PostForm} />
-            <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/inspiration" component={Inspiration} />
-          </Switch>
-        </ScrollToTop>
-      </Router>
-    </ApolloProvider>
-  </div>
-);
+class App extends React.Component {
+
+  async componentDidMount() {
+    if (window.location.pathname === '/callback') return;
+    try {
+      await auth.silentAuth();
+      this.forceUpdate();
+    } catch (err) {
+      if (err.error === 'login_required') return;
+      console.log(err.error);
+    }
+  }
+
+  render() {
+    return (
+      <div className={styles.app}>
+        <ApolloProvider client={client}>
+          <Router>
+            <ScrollToTop>
+              <header>
+                <Link to="/" className={styles.app_header_link}>
+                  <h1 className={styles.app_header}>Ambro</h1>
+                  {
+                    (auth.isAuthenticated()) ?
+                      (<button onClick={() => auth.logout()}>Log out </button>) :
+                      (<button onClick={() => auth.login()}>Log in</button>)
+                  }
+                </Link>
+              </header>
+              <Switch>
+                <Route exact path="/" component={SquaresGrid} />
+                <Route path="/post/:id" component={PostWrapper} />
+                <Route path="/about" component={About} />
+                <Route path="/contact" component={Contact} />
+                <Route path="/inspiration" component={Inspiration} />
+                <Route path="/callback" component={Callback} />
+                <GuardedRoute path="/edit/:id" component={PostWrapper} />
+                <GuardedRoute path="/delete/:id" component={DeletePost} />
+                <GuardedRoute path="/add" component={PostForm} />
+              </Switch>
+            </ScrollToTop>
+          </Router>
+        </ApolloProvider>
+      </div>
+    );
+  }
+}
 
 export default App;
