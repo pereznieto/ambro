@@ -7,6 +7,7 @@ import TextField from '../Form/TextField/TextField';
 import LoadingDot from '../LoadingDot/LoadingDot';
 import Post from '../Post/Post';
 import styles from './PostForm.module.scss';
+import Error from '../Error/Error';
 
 export enum FormType {
   ADD = "ADD",
@@ -62,7 +63,7 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
           if (loading) return <LoadingDot />;
           if (error) return (
             <React.Fragment>
-              <h2>Error {label}ing post:</h2>
+              <Error message={`Error ${label}ing post`} />
               <p>{error.message}</p>
             </React.Fragment>
           );

@@ -2,19 +2,23 @@
   text-align: center;
 }
 
-.app_header_link {
+.appHeaderLink {
   text-decoration: none;
   color: black;
   transition: all .3s ease-in-out;
 }
 
-.app_header_link:hover {
+.appHeaderLink:hover {
   color: #555;
 }
 
-.app_header {
+.appHeader {
   font-size: 3rem;
   margin: 50px 0;
   text-transform: uppercase;
   display: inline-block;
+
+  @media screen and (max-width: 540px) {
+    margin: 30px 0;
+  }
 }

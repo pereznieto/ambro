@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-decoration: none;
   color: black;
   transition: all .3s ease-in-out;
@@ -17,6 +17,7 @@
   animation-duration: 1s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
+  order: 2;
 }
 
 .loading {
@@ -31,6 +32,12 @@
   .square {
     width: 350px;
     height: 350px;
+  }
+
+  .link {
+    order: 1;
+    height: 50px;
+    margin: 5px;
   }
 }
 

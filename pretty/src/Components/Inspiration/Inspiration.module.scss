@@ -1,0 +1,70 @@
+.inspiration {
+  max-width: 1000px;
+  margin: 0 auto 50px;
+  padding: 0 10px 10px;
+  text-align: center;
+
+  a {
+    font-size: 1.5rem;
+    color: #777;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: #333;
+      text-decoration: underline;
+    }
+  }
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.picturito {
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+  margin: 30px 20px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+
+  @media screen and (max-width: 499px) {
+    order: 1;
+    margin: 0 20px 20px;
+  }
+  
+  &[data-brand="sezane"] {
+    background-image: url("https://scontent-lht6-1.cdninstagram.com/vp/4c983284bd7b169cdf175a896cf2e008/5CF4151B/t51.2885-15/e35/39810455_2157022037890117_2064072117908438908_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com");
+  }
+  
+  &[data-brand="bash"] {
+    background-image: url("https://scontent-lht6-1.cdninstagram.com/vp/f618b2d94cf4c6a3edd213775028125e/5CF5F7D3/t51.2885-15/e35/37881696_1882486398722459_3992490143960268800_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com");
+    order: 1;
+  }
+  
+  &[data-brand="otherstories"] {
+    background-image: url("https://scontent-lht6-1.cdninstagram.com/vp/7dfdcd8d97e3d765214b63b540a53370/5CFE36F8/t51.2885-15/e35/46769166_266168587432603_5557165536460987410_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com");
+  }
+  
+  &[data-brand="rouje"] {
+    background-image: url("https://scontent-lht6-1.cdninstagram.com/vp/f54406d686fde4aed2be62f047916476/5CFC6397/t51.2885-15/e35/39320569_641381352923248_8983914875524743168_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com");
+    order: 1;
+  }
+  
+  &[data-brand="lena"] {
+    background-image: url("https://scontent-lht6-1.cdninstagram.com/vp/708910871a8dbe92317235b26bcad308/5CEC1014/t51.2885-15/e35/38535239_314969212393641_7201675804722331648_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com");
+  }
+}
+
+.brand {
+  margin: 0 20px;
+  min-width: 200px;
+}

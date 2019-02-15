@@ -1,7 +1,7 @@
 import ApolloClient from 'apollo-boost';
 import React from 'react';
 import { ApolloProvider } from "react-apollo";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch, Redirect } from "react-router-dom";
 import About from '../Components/About/About';
 import Callback from '../Components/Callback/Callback';
 import Contact from '../Components/Contact/Contact';
@@ -14,11 +14,12 @@ import ScrollToTop from '../Components/ScrollToTop/ScrollToTop';
 import SquaresGrid from '../Components/SquaresGrid/SquaresGrid';
 import auth from '../utils/auth';
 import styles from './App.module.scss';
+import Error from '../Components/Error/Error';
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
   request: async operation => {
-    await operation.setContext((context: any) => ({
+    operation.setContext((context: any) => ({
       headers: {
         ...context.headers,
         authorization: auth.getIdToken(),
@@ -47,13 +48,8 @@ class App extends React.Component {
           <Router>
             <ScrollToTop>
               <header>
-                <Link to="/" className={styles.app_header_link}>
-                  <h1 className={styles.app_header}>Ambro</h1>
-                  {
-                    (auth.isAuthenticated()) ?
-                      (<button onClick={() => auth.logout()}>Log out </button>) :
-                      (<button onClick={() => auth.login()}>Log in</button>)
-                  }
+                <Link to="/" className={styles.appHeaderLink}>
+                  <h1 className={styles.appHeader}>Ambro</h1>
                 </Link>
               </header>
               <Switch>
@@ -66,6 +62,8 @@ class App extends React.Component {
                 <GuardedRoute path="/edit/:id" component={PostWrapper} />
                 <GuardedRoute path="/delete/:id" component={DeletePost} />
                 <GuardedRoute path="/add" component={PostForm} />
+                <Route path="/404" component={Error} />
+                <Redirect to="/404" />
               </Switch>
             </ScrollToTop>
           </Router>

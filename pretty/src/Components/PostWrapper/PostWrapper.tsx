@@ -5,6 +5,7 @@ import { GET_POST } from '../../utils/queries';
 import LoadingDot from '../LoadingDot/LoadingDot';
 import Post from '../Post/Post';
 import PostForm, { FormType } from '../PostForm/PostForm';
+import Error from '../Error/Error';
 
 interface PostWrapperProps extends RouteComponentProps<{ id: string }> {
   isSmall?: boolean;
@@ -14,7 +15,7 @@ const PostWrapper = ({ match: { params: { id }, path }, isSmall }: PostWrapperPr
   <Query query={GET_POST} variables={{ id }}>
     {({ loading, error, data }) => {
       if (loading) return <LoadingDot />;
-      if (error) return <p>Error loading post</p>;
+      if (error) return <Error message="Error loading post" />;
 
       const isEdit = !!~path.indexOf('edit');
       return isEdit ?

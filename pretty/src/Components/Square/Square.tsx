@@ -11,7 +11,7 @@ interface SquareProps {
 const Square = ({ id, image, text }: SquareProps) => (
   <Link
     to={image ? `/post/${id}` : `/${id}`}
-    className={`${styles.square} ${image ? styles.loading : ''}`}
+    className={`${styles.square} ${image ? styles.loading : styles.link}`}
     {...image && { style: { backgroundImage: `url(${image})` } }}
   >
     {text}

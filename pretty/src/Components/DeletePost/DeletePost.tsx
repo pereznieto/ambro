@@ -5,6 +5,7 @@ import { DELETE_POST } from '../../utils/queries';
 import LoadingDot from '../LoadingDot/LoadingDot';
 import PostWrapper from '../PostWrapper/PostWrapper';
 import styles from './DeletePost.module.scss';
+import Error from '../Error/Error';
 
 interface DeletePostProps extends RouteComponentProps<{ id: string }> { };
 
@@ -14,7 +15,7 @@ const DeletePost = ({ match: { params: { id } }, history, location, match }: Del
       if (loading) return <LoadingDot />;
       if (error) return (
         <React.Fragment>
-          <h2>Error deleting post:</h2>
+          <Error message="Error deleting post" />
           <p>{error.message}</p>
         </React.Fragment>
       );
