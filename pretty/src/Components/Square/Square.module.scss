@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-decoration: none;
   color: black;
   transition: all .3s ease-in-out;
@@ -38,6 +38,7 @@
     order: 1;
     height: 50px;
     margin: 5px;
+    font-size: 1.5rem;
   }
 }
 
