@@ -3,13 +3,15 @@
   height: 250px;
   margin: 10px;
   padding: 10px;
-  background-color: blanchedalmond;
+  background-color: #e2ccac;
   background-size: cover;
   background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
   text-decoration: none;
   color: black;
   transition: all .3s ease-in-out;
@@ -43,7 +45,7 @@
 }
 
 .square:hover {
-  filter: opacity(.75);
+  filter: grayscale(1);
 }
 
 @keyframes fadein {
@@ -62,6 +64,6 @@
   }
   
   to {
-    background-color: blanchedalmond;
+    background-color: #e2ccac;
   }
 }
