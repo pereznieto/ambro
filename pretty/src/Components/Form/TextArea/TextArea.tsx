@@ -3,16 +3,19 @@ import styles from './TextArea.module.scss';
 
 interface TextAreaProps {
   label: string;
+  caption?: string;
   name: string;
   value?: string;
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 
-const TextArea = ({ label, name, value, onChange, isDisabled }: TextAreaProps) => (
+const TextArea = ({ label, caption, name, value, onChange, isDisabled }: TextAreaProps) => (
   <div className={styles.container}>
     <label className={styles.textArea}>
-      <span className={styles.label}>{label}</span>
+      <span className={styles.label}>
+        {label}{caption && <span className={styles.caption}>{caption}</span>}
+      </span>
       <textarea
         className={styles.input}
         name={name}

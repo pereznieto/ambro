@@ -39,10 +39,10 @@
 
 @keyframes colour {
   from {
-    filter: grayscale(1);
+    filter: grayscale(1) brightness(1.1) contrast(0.9);
   }
   
   to {
-    filter: grayscale(0)
+    filter: grayscale(0);
   }
 }

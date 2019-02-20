@@ -33,7 +33,7 @@ interface PostFormState {
   caption: string;
   date: string;
   text: string;
-  isFormDisabled: boolean;
+  error?: string;
 };
 
 class PostForm extends React.Component<PostFormProps, PostFormState> {
@@ -48,12 +48,33 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
       caption: caption || '',
       date: date || '',
       text: text || '',
-      isFormDisabled: false
+      error: '',
     };
+
+    if (!this.state.id) {
+      this.getLocalStorageItems();
+    }
+  }
+
+  setLocalStorageItems() {
+    localStorage.setItem('AmbroPostInputs', JSON.stringify(this.state));
+  };
+
+  getLocalStorageItems() {
+    const saved = localStorage.getItem('AmbroPostInputs');
+
+    if (saved) {
+      this.state = JSON.parse(saved);
+      localStorage.removeItem('AmbroPostInputs');
+    }
+  };
+
+  onDataInput({ target: { name, value } }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    this.setState({ [name]: value } as unknown as PostFormState, this.setLocalStorageItems);
   }
 
   render() {
-    const { id, image, ratio, location, caption, date, text, isFormDisabled } = this.state;
+    const { id, image, ratio, location, caption, date, text } = this.state;
     const isEdit = this.props.type === FormType.EDIT;
     const label = isEdit ? 'edit' : 'add';
 
@@ -73,8 +94,28 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
             <div className={styles.postForm}>
               <form className={styles.form} onSubmit={event => {
                 event.preventDefault();
-                this.setState({ isFormDisabled: true });
-                mutatePost({ variables: { id, image, ratio, location, caption, date, text } });
+                if (id && image && ratio && caption && date) {
+                  mutatePost({ variables: { id, image, ratio, location, caption, date, text } });
+                } else {
+                  const required = [{
+                    label: 'ID',
+                    value: id,
+                  }, {
+                    label: ' caption',
+                    value: caption,
+                  }, {
+                    label: ' date',
+                    value: date,
+                  }, {
+                    label: ' image URL',
+                    value: image,
+                  }, {
+                    label: ' image ratio',
+                    value: ratio,
+                  }];
+                  const missing = required.filter(input => !input.value).map(input => input.label);
+                  this.setState({ error: `Ooops! You’re missing: ${missing}` });
+                }
               }}>
                 <div className={styles.sections}>
                   <div className={styles.inputs}>
@@ -87,51 +128,46 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
                       label="ID"
                       name="id"
                       value={id}
-                      onChange={event => { this.setState({ id: event.target.value }) }}
-                      isDisabled={isFormDisabled}
+                      onChange={event => { this.onDataInput(event) }}
                     />}
                     <TextField
                       label="Caption"
                       name="caption"
                       value={caption}
-                      onChange={event => { this.setState({ caption: event.target.value }) }}
-                      isDisabled={isFormDisabled}
+                      onChange={event => { this.onDataInput(event) }}
                     />
                     <TextField
                       label="Location"
                       name="location"
                       value={location}
-                      onChange={event => { this.setState({ location: event.target.value }) }}
-                      isDisabled={isFormDisabled}
+                      onChange={event => { this.onDataInput(event) }}
                     />
                     <TextField
                       label="Date"
                       name="date"
                       value={date}
-                      onChange={event => { this.setState({ date: event.target.value }) }}
-                      isDisabled={isFormDisabled}
+                      caption="optional"
+                      onChange={event => { this.onDataInput(event) }}
                     />
                     <TextField
                       label="Image URL"
                       name="image"
                       value={image}
-                      onChange={event => { this.setState({ image: event.target.value }) }}
-                      isDisabled={isFormDisabled}
+                      onChange={event => { this.onDataInput(event) }}
                     />
                     <TextField
                       label="Image ratio"
-                      caption="(height &#215; 100 / width)"
                       name="ratio"
                       value={ratio}
-                      onChange={event => { this.setState({ ratio: event.target.value }) }}
-                      isDisabled={isFormDisabled}
+                      caption="(height &#215; 100 / width)"
+                      onChange={event => { this.onDataInput(event) }}
                     />
                     <TextArea
                       label="Text"
                       name="text"
                       value={text}
-                      onChange={event => { this.setState({ text: event.target.value }) }}
-                      isDisabled={isFormDisabled}
+                      caption="optional"
+                      onChange={event => { this.onDataInput(event) }}
                     />
                   </div>
                   <div className={styles.preview}>
@@ -139,9 +175,10 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
                     <Post isSmall={true} {...this.state} />
                   </div>
                 </div>
-                <button className={styles.button} type="submit" disabled={isFormDisabled}>
+                <button className={styles.button} type="submit">
                   {_.capitalize(label)} post
                 </button>
+                {this.state.error && <Error message={this.state.error} />}
               </form>
             </div >
           );

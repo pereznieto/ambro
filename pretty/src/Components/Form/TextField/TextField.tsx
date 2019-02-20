@@ -7,7 +7,7 @@ interface TextFieldProps {
   name: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 
 const TextField = ({ label, caption, name, value, onChange, isDisabled }: TextFieldProps) => (
