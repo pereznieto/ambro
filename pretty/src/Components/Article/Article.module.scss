@@ -1,0 +1,58 @@
+.article {
+  display: block;
+  text-decoration: none;
+  transition: all .5s ease-in-out;
+  color: black;
+  margin: 0 30px 50px 0;
+
+  @media screen and (max-width: 750px) {
+    margin: 0 0 50px;
+  }
+
+  &:hover {
+    filter: grayscale(1) brightness(1.1) contrast(0.9);
+  }
+}
+
+.image {
+  height: 750px;
+  background-color: #e2ccac;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  animation-name: greyscale;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.textWrapper {
+  background-color: rgba(#fff, .75);
+  text-align: left;
+  padding: 10px;
+  width: 100%;
+  max-height: 122px;
+  overflow: hidden;
+  position: relative;
+}
+
+.caption {
+  font-size: 1.5rem;
+  margin: 0 0 10px;
+}
+
+.text {
+  font-size: 1.2rem;
+}
+
+@keyframes greyscale {
+  from {
+    background-color: #eee;
+  }
+
+  to {
+    background-color: #e2ccac;
+  }
+}

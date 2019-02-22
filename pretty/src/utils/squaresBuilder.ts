@@ -8,7 +8,7 @@ interface GeneratedSquares {
 }
 
 export const generateSquares = (posts: SquarePost[]) => {
-  const sortedPosts = _.reverse(_.sortBy(posts, post => post.date));;
+  const sortedPosts = _.reverse(_.sortBy(posts, post => post.date));
   const linkSquares = ['About', 'Contact', 'Inspiration'];
 
   return sortedPosts.reduce((previous, current, index) => {

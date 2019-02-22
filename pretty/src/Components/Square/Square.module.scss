@@ -20,6 +20,10 @@
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
   order: 2;
+
+  &:hover {
+    filter: grayscale(1) brightness(1.1) contrast(0.9);
+  }
 }
 
 .loading {
@@ -42,10 +46,6 @@
     margin: 5px;
     font-size: 1.5rem;
   }
-}
-
-.square:hover {
-  filter: grayscale(1) brightness(1.1) contrast(0.9);
 }
 
 @keyframes fadein {
