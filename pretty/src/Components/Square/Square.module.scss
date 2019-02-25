@@ -1,6 +1,6 @@
 .square {
-  width: 250px;
-  height: 250px;
+  width: 230px;
+  height: 230px;
   margin: 10px;
   padding: 10px;
   background-color: #e2ccac;
@@ -24,6 +24,21 @@
   &:hover {
     filter: grayscale(1) brightness(1.1) contrast(0.9);
   }
+
+  @media screen and (max-width: 1332px) {
+    width: 200px;
+    height: 200px;
+  }
+
+  @media screen and (max-width: 1183px) {
+    width: 250px;
+    height: 250px;
+  }
+
+  @media screen and (max-width: 750px) {
+    width: 350px;
+    height: 350px;
+  }
 }
 
 .loading {
@@ -35,11 +50,6 @@
 }
 
 @media screen and (max-width: 540px) {
-  .square {
-    width: 350px;
-    height: 350px;
-  }
-
   .link {
     order: 1;
     height: 50px;

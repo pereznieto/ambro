@@ -15,6 +15,7 @@ import SquaresGrid from '../Components/SquaresGrid/SquaresGrid';
 import auth from '../utils/auth';
 import styles from './App.module.scss';
 import Error from '../Components/Error/Error';
+import Header from '../Components/Header/Header';
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -52,7 +53,8 @@ class App extends React.Component {
                   <h1 className={styles.appHeader}>Ambro</h1>
                 </Link>
               </header>
-              <Switch>
+              <React.Fragment>
+                <Route exact path="/" component={Header} />
                 <Route exact path="/" component={SquaresGrid} />
                 <Route path="/post/:id" component={PostWrapper} />
                 <Route path="/about" component={About} />
@@ -63,8 +65,7 @@ class App extends React.Component {
                 <GuardedRoute path="/delete/:id" component={DeletePost} />
                 <GuardedRoute path="/add" component={PostForm} />
                 <Route path="/404" component={Error} />
-                <Redirect to="/404" />
-              </Switch>
+              </React.Fragment>
             </ScrollToTop>
           </Router>
         </ApolloProvider>
