@@ -13,9 +13,9 @@ import PostWrapper from '../Components/PostWrapper/PostWrapper';
 import ScrollToTop from '../Components/ScrollToTop/ScrollToTop';
 import SquaresGrid from '../Components/SquaresGrid/SquaresGrid';
 import auth from '../utils/auth';
-import styles from './App.module.scss';
 import Error from '../Components/Error/Error';
 import Header from '../Components/Header/Header';
+import Nav from '../Components/Nav/Nav';
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -44,32 +44,26 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className={styles.app}>
-        <ApolloProvider client={client}>
-          <Router>
-            <ScrollToTop>
-              <header>
-                <Link to="/" className={styles.appHeaderLink}>
-                  <h1 className={styles.appHeader}>Ambro</h1>
-                </Link>
-              </header>
-              <React.Fragment>
-                <Route exact path="/" component={Header} />
-                <Route exact path="/" component={SquaresGrid} />
-                <Route path="/post/:id" component={PostWrapper} />
-                <Route path="/about" component={About} />
-                <Route path="/contact" component={Contact} />
-                <Route path="/inspiration" component={Inspiration} />
-                <Route path="/callback" component={Callback} />
-                <GuardedRoute path="/edit/:id" component={PostWrapper} />
-                <GuardedRoute path="/delete/:id" component={DeletePost} />
-                <GuardedRoute path="/add" component={PostForm} />
-                <Route path="/404" component={Error} />
-              </React.Fragment>
-            </ScrollToTop>
-          </Router>
-        </ApolloProvider>
-      </div>
+      <ApolloProvider client={client}>
+        <Router>
+          <ScrollToTop>
+            <Nav />
+            <React.Fragment>
+              <Route exact path="/" component={Header} />
+              <Route exact path="/" component={SquaresGrid} />
+              <Route path="/post/:id" component={PostWrapper} />
+              <Route path="/about" component={About} />
+              <Route path="/contact" component={Contact} />
+              <Route path="/inspiration" component={Inspiration} />
+              <Route path="/callback" component={Callback} />
+              <GuardedRoute path="/edit/:id" component={PostWrapper} />
+              <GuardedRoute path="/delete/:id" component={DeletePost} />
+              <GuardedRoute path="/add" component={PostForm} />
+              <Route path="/404" component={Error} />
+            </React.Fragment>
+          </ScrollToTop>
+        </Router>
+      </ApolloProvider>
     );
   }
 }
