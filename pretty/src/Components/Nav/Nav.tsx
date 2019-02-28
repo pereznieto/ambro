@@ -17,27 +17,28 @@ export default class Nav extends React.Component<{}, NavState> {
 
   render() {
     const { isMenuOpen } = this.state;
+    const toggleOpen = () => this.setState({ isMenuOpen: !isMenuOpen });
 
     return (
       <header className={styles.header}>
-        <Link to="/" className={styles.link}>
+        <Link to="/" className={styles.titleLink}>
           <h1 className={styles.title}>Ambro</h1>
         </Link>
         <div className={`${styles.menu} ${isMenuOpen ? styles.show : ''}`}>
-          <div
+          <button
             className={styles.toggle}
-            onClick={() => { this.setState({ isMenuOpen: !isMenuOpen }); }}
+            onClick={toggleOpen}
           >
             <div className={styles.lineOne} />
             <div className={styles.lineTwo} />
-          </div>
-          <Link to="/about" className={styles.link}>
+          </button>
+          <Link to="/about" onClick={toggleOpen} className={styles.link}>
             <span className={styles.linkText}>About</span>
           </Link>
-          <Link to="/contact" className={styles.link}>
+          <Link to="/contact" onClick={toggleOpen} className={styles.link}>
             <span className={styles.linkText}>Contact</span>
           </Link>
-          <Link to="/inspiration" className={styles.link}>
+          <Link to="/inspiration" onClick={toggleOpen} className={styles.link}>
             <span className={styles.linkText}>Inspiration</span>
           </Link>
         </div>
