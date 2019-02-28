@@ -2,10 +2,8 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
-  id: {
+  instagramId: {
     type: String,
-    required: true,
-    unique: true,
   },
   image: {
     type: String,

@@ -14,6 +14,7 @@ export const GET_ALL_POSTS = gql`
 export const GET_POST = gql`
   query Post($id: String!) {
     post(id: $id) {
+      instagramId
       image
       ratio
       location
@@ -26,7 +27,7 @@ export const GET_POST = gql`
 
 export const ADD_POST = gql`
 mutation AddPost(
-  $id: String!,
+  $instagramId: String,
   $image: String!,
   $ratio: String!,
   $caption: String!,
@@ -34,7 +35,7 @@ mutation AddPost(
   $date: String!,
   $text: String) {
   addPost(
-    id: $id,
+    instagramId: $instagramId,
     image: $image,
     ratio: $ratio,
     caption: $caption,
@@ -43,6 +44,7 @@ mutation AddPost(
     text: $text
   ) {
     id
+    instagramId
     image
     ratio
     caption
@@ -56,6 +58,7 @@ mutation AddPost(
 export const EDIT_POST = gql`
 mutation EditPost(
   $id: String!,
+  $instagramId: String,
   $image: String!,
   $ratio: String!,
   $caption: String!,
@@ -64,6 +67,7 @@ mutation EditPost(
   $text: String) {
   editPost(
     id: $id,
+    instagramId: $instagramId,
     image: $image,
     ratio: $ratio,
     caption: $caption,
@@ -72,6 +76,7 @@ mutation EditPost(
     text: $text
   ) {
     id
+    instagramId
     image
     ratio
     caption

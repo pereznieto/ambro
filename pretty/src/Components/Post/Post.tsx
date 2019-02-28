@@ -5,9 +5,10 @@ import styles from './Post.module.scss';
 
 interface PostProps {
   id: string;
+  instagramId?: string;
   image: string;
   ratio: string;
-  location: string;
+  location?: string;
   caption: string;
   date: string;
   text?: string;

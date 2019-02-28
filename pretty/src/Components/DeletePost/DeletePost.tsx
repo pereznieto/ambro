@@ -16,16 +16,18 @@ const DeletePost = ({ match: { params: { id } }, history, location, match }: Del
       if (error) return (
         <React.Fragment>
           <Error message="Error deleting post" />
-          <p>{error.message}</p>
+          <p className={styles.center}>{error.message}</p>
         </React.Fragment>
       );
-      if (called && !!data) return <h2>Post with id: {id} deleted successfully.</h2>;
+      if (called && !!data) return <h2 className={styles.center}>Post with id: {id} deleted successfully.</h2>;
 
       return (
-        <form onSubmit={event => {
-          event.preventDefault();
-          deletePost({ variables: { id } });
-        }}>
+        <form
+          className={styles.center}
+          onSubmit={event => {
+            event.preventDefault();
+            deletePost({ variables: { id } });
+          }}>
           <h2 className={styles.warning}>
             Are you sure you want to delete post with ID: <span className={styles.thick}>{id}</span>?
           </h2>

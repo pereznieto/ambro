@@ -16,6 +16,7 @@ export enum FormType {
 
 interface PostFormProps {
   id?: string;
+  instagramId?: string;
   image?: string;
   ratio?: string;
   location?: string;
@@ -27,6 +28,7 @@ interface PostFormProps {
 
 interface PostFormState {
   id: string;
+  instagramId: string;
   image: string;
   ratio: string;
   location: string;
@@ -39,9 +41,10 @@ interface PostFormState {
 class PostForm extends React.Component<PostFormProps, PostFormState> {
   constructor(props: PostFormProps) {
     super(props);
-    const { id, image, ratio, location, caption, date, text, type } = this.props;
+    const { id, instagramId, image, ratio, location, caption, date, text, type } = this.props;
     this.state = {
       id: id || '',
+      instagramId: instagramId || '',
       image: image || '',
       ratio: ratio || '',
       location: type === FormType.EDIT ? location || '' : '',
@@ -74,7 +77,7 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
   }
 
   render() {
-    const { id, image, ratio, location, caption, date, text } = this.state;
+    const { id, instagramId, image, ratio, location, caption, date, text } = this.state;
     const isEdit = this.props.type === FormType.EDIT;
     const label = isEdit ? 'edit' : 'add';
 
@@ -85,22 +88,21 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
           if (error) return (
             <React.Fragment>
               <Error message={`Error ${label}ing post`} />
-              <p>{error.message}</p>
+              <p className={styles.center}>{error.message}</p>
             </React.Fragment>
           );
-          if (called && !!data) return <h2>Post with id: {id} {label}ed successfully!</h2>;
+          if (called && !!data) return <h2 className={styles.center}>Post {label}ed successfully!</h2>;
 
           return (
             <div className={styles.postForm}>
               <form className={styles.form} onSubmit={event => {
                 event.preventDefault();
-                if (id && image && ratio && caption && date) {
-                  mutatePost({ variables: { id, image, ratio, location, caption, date, text } });
+                if (image && ratio && caption && date) {
+                  const defaultVariables = { image, ratio, location, caption, date, text };
+                  const variables = isEdit ? { ...defaultVariables, id } : defaultVariables;
+                  mutatePost({ variables });
                 } else {
                   const required = [{
-                    label: 'ID',
-                    value: id,
-                  }, {
                     label: ' caption',
                     value: caption,
                   }, {
@@ -124,12 +126,6 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
                       <span className={styles.label}>ID: </span>
                       <span className={styles.value}>{id}</span>
                     </p>}
-                    {!isEdit && <TextField
-                      label="ID"
-                      name="id"
-                      value={id}
-                      onChange={event => { this.onDataInput(event) }}
-                    />}
                     <TextField
                       label="Caption"
                       name="caption"
@@ -139,6 +135,7 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
                     <TextField
                       label="Location"
                       name="location"
+                      caption="optional"
                       value={location}
                       onChange={event => { this.onDataInput(event) }}
                     />
@@ -146,7 +143,6 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
                       label="Date"
                       name="date"
                       value={date}
-                      caption="optional"
                       onChange={event => { this.onDataInput(event) }}
                     />
                     <TextField
@@ -160,6 +156,13 @@ class PostForm extends React.Component<PostFormProps, PostFormState> {
                       name="ratio"
                       value={ratio}
                       caption="(height &#215; 100 / width)"
+                      onChange={event => { this.onDataInput(event) }}
+                    />
+                    <TextField
+                      label="Instagram ID"
+                      name="instagramId"
+                      caption="optional"
+                      value={instagramId}
                       onChange={event => { this.onDataInput(event) }}
                     />
                     <TextArea

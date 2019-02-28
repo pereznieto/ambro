@@ -30,9 +30,9 @@ const client = new ApolloClient({
 });
 
 class App extends React.Component {
-
   async componentDidMount() {
     if (window.location.pathname === '/callback') return;
+
     try {
       await auth.silentAuth();
       this.forceUpdate();
